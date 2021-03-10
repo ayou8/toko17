@@ -10,27 +10,45 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'BerandaController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/product', 'ProductController@index');
-Route::post('/product/post', 'ProductController@store');
 Route::get('autocomplete', 'ProductController@index');
 Route::get('search', 'ProductController@search');
 Route::resource('posts','PostsController');
-Route::post('posts/changeStatus', array('as' => 'changeStatus', 'uses' => 'PostsController@changeStatus'));
-Route::get('cart', function(){
+Route::get('troli', function(){
 
-// Cart::add(1, 'iPhone 7', 500, 1);
-// Cart::add(1, 'iPad Pro', 600, 2);
-$a= array('total' => Cart::getTotal(), 'subtotal' => Cart::getSubTotal(),'rincian' => Cart::getContent(), 'banyak' => count(Cart::getContent()));
-return $a;
+  Cart::add(Request::post('id'), Request::post('nama'),  Request::post('harga'), Request::post('banyak'),Request::post('kategori'));
 
- // return 1900 - 300 = 1600
+    return back()->with('status', 'Keranjang Belanja berhasil ditambahkan');
 
 });
 
+Route::get('cart', function(){
+
+      return Cart::clear();
+
+});
+
+Route::get('delete', function() {
+	Cart::clear();
+
+
+});
+Route::get('produkdetail/{seo}', 'BerandaController@detail' );
+Route::get('kategori/{kategori}', 'ProdukKategoriController@kategori' );
+Route::get('kat/{kategori}/{sub}', 'ProdukKategoriController@subkategori' );
+
+Route::get('checkout','ProductController@checkout');
+Route::post('checkout','ProductController@newuser');
+
+Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
+Route::get('/cari', 'SearchController@search')->name('cari');
+Route::get('propinsi',array('as'=>'propinsi','uses'=>'WilayahController@provinsi'));
+Route::get('propinsi/kota/{id}',array('as'=>'myform.ajax','uses'=>'WilayahController@kota'));
+Route::post('kota', ['as'=>'kota','uses'=>'WilayahController@kota']);
+Route::get('about','AboutController@index');

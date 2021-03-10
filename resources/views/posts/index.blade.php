@@ -254,14 +254,13 @@
 
     <!-- Bootstrap JavaScript -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ asset('public/css/')}}1/js/bootstrap.min.js"></script>
 
     <!-- toastr notifications -->
-    <script type="text/javascript" src="{{ asset('public/toastr/toastr.min.js') }}"></script>
-<!--     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
- -->
+    {{-- <script type="text/javascript" src="{{ asset('toastr/toastr.min.js') }}"></script> --}}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <!-- icheck checkboxes -->
-    <script type="text/javascript" src="{{ asset('public/icheck/icheck.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('icheck/icheck.min.js') }}"></script>
 
     <!-- Delay table load until everything else is loaded -->
     <script>
@@ -270,8 +269,8 @@
         })
     </script>
 
-    <script type="text/javascript" src="{{ asset('public/js/published.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/posts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/published.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/posts.js') }}"></script>
    
 </body>
 </html>

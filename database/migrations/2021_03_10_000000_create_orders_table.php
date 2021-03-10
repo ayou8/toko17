@@ -11,13 +11,12 @@ class CreateShoppingCartTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_cart', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->string('id');
-            $table->string('instance');
-            $table->longText('content');
-            $table->nullableTimestamps();
+            $table->string('menu_id');
+            $table->string('jumlah');
+            $table->timestamps();
 
-            $table->primary(['id', 'instance']);
         });
     }
 
@@ -26,6 +25,6 @@ class CreateShoppingCartTable extends Migration
      */
     public function down()
     {
-        Schema::drop('shopping_cart');
+        Schema::drop('orders');
     }
 }
